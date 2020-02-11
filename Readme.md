@@ -6,8 +6,10 @@ NodeJS >= 12.13.0
 MongoDB >= 3.2 
 
 ## How to run ##
-
-1. Hit the app with POST request, application/json as data.
+1. Clone the repo. 
+2. Enter project directory and run `npm i`
+3. Start the app by node `app.js`
+3. Hit the app with POST request, application/json as data.
 ```
 curl -X POST \
   http://localhost:8000/user \
