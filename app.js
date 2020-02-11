@@ -27,15 +27,28 @@ class Server {
 
   initRoutes() {
     app.use('/', route);
+    
     app.get('/status', (req, res) =>
     res.send('Hello World!'));
+    
+    // Catch-all error handler
+    app.use(function (error, req, res, next) {
+      res.status(500).json({
+        code: 1000,
+        msg: 'Internal error'
+      });
+    });  
   }
 
-  initDB() {
-    mongoose.connect('mongodb://localhost/Users', { useNewUrlParser: true, 
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
+  async initDB() {
+    try {
+      await mongoose.connect('mongodb://localhost/Users', { useNewUrlParser: true, 
+        useUnifiedTopology: true,
+        useCreateIndex: true
+      });
+    } catch (error) {
+      console.log("Unable to connect mongodb");
+    } 
   }
 }
 

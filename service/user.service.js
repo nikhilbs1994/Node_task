@@ -6,7 +6,7 @@ const UserRole = mongoose.model('UserRole', require('../schema/userRole.schema.j
 const error = {
     code: 1001,
     msg: "Internal Error"
-}
+};
 
 class userService {
     createUser(userDetails) {
@@ -14,6 +14,7 @@ class userService {
         return user.save().then(function(user) {
             return UserRole.estimatedDocumentCount({}, function (err, count) {
                 if (err) return error;
+                //if userrole model has no entry, enter userRole as admin(1) otherwise user(2) 
                 let roleId = (count > 0) ? 1 : 2;
                 const userRole = new UserRole({
                     userId: user._id,
@@ -26,7 +27,7 @@ class userService {
         }, function (err) {
             if (err) return error;
         });
-    };
+    }
 }
 
 module.exports = userService;
