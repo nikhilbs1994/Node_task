@@ -8,7 +8,8 @@ MongoDB >= 3.2
 ## How to run ##
 
 1. Hit the app with POST request, application/json as data.
-	eg : curl -X POST \
+```
+curl -X POST \
   http://localhost:8000/user \
   -H 'Content-Type: application/json' \
   -H 'Host: localhost:8000' \
@@ -17,3 +18,4 @@ MongoDB >= 3.2
     "address": "Test1",
     "email": "abc@gamil.com"
 }'
+```
